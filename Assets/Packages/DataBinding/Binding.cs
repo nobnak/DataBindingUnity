@@ -10,6 +10,11 @@ namespace DataBinding {
 		public Behaviour dst;
 		public string dstPath;
 
+		[SerializeField]
+		public UnityEngine.Events.UnityEvent OnSrcChanged;
+		[SerializeField]
+		public UnityEngine.Events.UnityEvent OnDstChanged;
+
 		ParameterInfo<SRC> _srcInfo;
 		ParameterInfo<DST> _dstInfo;
 
@@ -35,13 +40,17 @@ namespace DataBinding {
 
 		public virtual void Load() {
 			DST tmp;
-			if (Convert(_srcInfo.Value, out tmp))
+			if (Convert(_srcInfo.Value, out tmp)) {
 				_dstInfo.Value = tmp;
+				OnDstChanged.Invoke();
+			}
 		}
 		public virtual void Save() {
 			SRC tmp;
-			if (ConvertBack(_dstInfo.Value, out tmp))
+			if (ConvertBack(_dstInfo.Value, out tmp)) {
 				_srcInfo.Value = tmp;
+				OnSrcChanged.Invoke();
+			}
 		}
 		
 	}
