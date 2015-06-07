@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace DataBinding {
 
+	[AddComponentMenu("DataBinding/Int->String")]
 	public class Int2StringBinding : Binding<int, string> {
 
 		protected override void Start() {

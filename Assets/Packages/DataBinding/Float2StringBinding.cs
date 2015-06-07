@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace DataBinding {
 
+	[AddComponentMenu("DataBinding/Float->String")]
 	public class Float2StringBinding : Binding<float, string> {
 		public string format = "f2";
 		
